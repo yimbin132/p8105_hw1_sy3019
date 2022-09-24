@@ -1,22 +1,27 @@
 ---
 title: "HW2"
-output: git_document
+output: github_document
 Date: "2022-09-24"
 ---
 
-```{r}
+```{r setup}
 library(tidyverse)
 ```
 
 # Problem 1 
 
+## Importing data
 ```{r}
 data("penguins", package = "palmerpenguins")
 penguins_df = janitor::clean_names(penguins)
 ```
 
+## Take a look at the data
 ```{r}
-
+penguins_df
 ```
-
-
+```{r}
+skimr::skim(penguins_df)
+```
+The penguins data frame has "species," "island," and "sex" string values, and "bill_length_mm," "bill_depth_mm," "flipper_length_mm," 
+"body_mass_g," and "year" numeric variables. There are `r nrow(penguins_df)` rows, and `r ncol(penguins_df)` columns, and the mean flipper lenght is `r mean(penguins_df$flipper_length_mm, na.rm = TRUE)` mm.        
