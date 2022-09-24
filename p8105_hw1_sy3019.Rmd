@@ -57,7 +57,7 @@ mean(problem2_df$vec_factor)
 We cannot calculate the mean value of the character and factor vectors. 
 
 ## Converting the logical, character, and factor variables to numeric variables
-```{r, echo = FALSE}
+```{r, results = 'hide'}
 problem2_df$vec_norm <- as.numeric(problem2_df$vec_norm)
 problem2_df$vec_log <- as.numeric(problem2_df$vec_log)
 problem2_df$vec_char <- as.numeric(problem2_df$vec_char)
