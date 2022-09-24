@@ -29,6 +29,7 @@ The penguins data frame has "species," "island," and "sex" string values, and "b
 ## Scatter plot of flipper_length_mm (y) vs bill_length_mm (x)
 ```{r}
 ggplot(penguins_df, aes(x = bill_length_mm, y = flipper_length_mm), group = species) + 
-  geom_point(aes(color=species), na.rm = TRUE)
+  geom_point(aes(color = species), na.rm = TRUE)
+ggsave(file = "problem1_scatterplot.pdf")
 ```
 
