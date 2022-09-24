@@ -24,4 +24,11 @@ penguins_df
 skimr::skim(penguins_df)
 ```
 The penguins data frame has "species," "island," and "sex" string values, and "bill_length_mm," "bill_depth_mm," "flipper_length_mm," 
-"body_mass_g," and "year" numeric variables. There are `r nrow(penguins_df)` rows, and `r ncol(penguins_df)` columns, and the mean flipper lenght is `r mean(penguins_df$flipper_length_mm, na.rm = TRUE)` mm.        
+"body_mass_g," and "year" numeric variables. There are `r nrow(penguins_df)` rows, and `r ncol(penguins_df)` columns, and the mean flipper lenght is `r mean(penguins_df$flipper_length_mm, na.rm = TRUE)` mm. 
+
+## Scatter plot of flipper_length_mm (y) vs bill_length_mm (x)
+```{r}
+ggplot(penguins_df, aes(x = bill_length_mm, y = flipper_length_mm), group = species) + 
+  geom_point(aes(color=species), na.rm = TRUE)
+```
+
