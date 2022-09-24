@@ -4,11 +4,20 @@ output: git_document
 Date: "2022-09-24"
 ---
 
+```{r}
+library(tidyverse)
+```
+
 # Problem 1 
 
 ```{r}
 data("penguins", package = "palmerpenguins")
+penguins_df = janitor::clean_names(penguins)
+view(penguins)
 ```
 
+```{r}
+
+```
 
 
