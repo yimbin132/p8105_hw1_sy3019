@@ -4,7 +4,7 @@ output: github_document
 Date: "2022-09-24"
 ---
 
-```{r setup}
+```{r, message=FALSE}
 library(tidyverse)
 ```
 
@@ -20,11 +20,11 @@ penguins_df = janitor::clean_names(penguins)
 ```{r}
 penguins_df
 ```
-```{r}
+```{r, results='hide'}
 skimr::skim(penguins_df)
 ```
-The penguins data frame has "species," "island," and "sex" string values, and "bill_length_mm," "bill_depth_mm," "flipper_length_mm," 
-"body_mass_g," and "year" numeric variables. There are `r nrow(penguins_df)` rows, and `r ncol(penguins_df)` columns, and the mean flipper lenght is `r mean(penguins_df$flipper_length_mm, na.rm = TRUE)` mm. 
+The penguins data frame has "species," "island," and "sex" factor values, and "bill_length_mm," "bill_depth_mm," "flipper_length_mm," 
+"body_mass_g," and "year" numeric variables. There are `r nrow(penguins_df)` rows, and `r ncol(penguins_df)` columns, and the mean flipper length is `r mean(penguins_df$flipper_length_mm, na.rm = TRUE)` mm. 
 
 ## Scatter plot of flipper_length_mm (y) vs bill_length_mm (x)
 ```{r}
@@ -32,4 +32,39 @@ ggplot(penguins_df, aes(x = bill_length_mm, y = flipper_length_mm), group = spec
   geom_point(aes(color = species), na.rm = TRUE)
 ggsave(file = "problem1_scatterplot.pdf")
 ```
+# Problem 2 
 
+## A random sample size of 10 from a standard Normal distribution
+
+```{r}
+samp <- rnorm(10)
+log <- samp > 0
+
+problem2_df <- tibble(
+  vec_norm = samp,
+  vec_log = log,
+  vec_char = (c("my","name","is","Soung","and","nice","to","meet","you","all")),
+  vec_factor = factor(c("low","low","high","high","medium","low","medium","low","high","medium"))
+)
+```
+## Taking the mean of each variable
+```{r}
+mean(problem2_df$vec_norm)
+mean(problem2_df$vec_log)
+mean(problem2_df$vec_char)
+mean(problem2_df$vec_factor)
+```
+We cannot calculate the mean value of the character and factor vectors. 
+
+## Converting the logical, character, and factor variables to numeric variables
+```{r, echo = FALSE}
+problem2_df$vec_norm <- as.numeric(problem2_df$vec_norm)
+problem2_df$vec_log <- as.numeric(problem2_df$vec_log)
+problem2_df$vec_char <- as.numeric(problem2_df$vec_char)
+problem2_df$vec_factor <- as.numeric(problem2_df$vec_factor)
+mean(problem2_df$vec_norm)
+mean(problem2_df$vec_log)
+mean(problem2_df$vec_char)
+mean(problem2_df$vec_factor)
+```
+The logical and factor variables become numerical variables while the character variables don't. We can see that in the background, R assigns and stores the logical and factor variables as integers. However, we are unable to calculate the mean directly for the factor variables as R treats the integers as levels in a categorical variable. However, after converting the factor variables to numeric variable, we can calculate the mean. 
